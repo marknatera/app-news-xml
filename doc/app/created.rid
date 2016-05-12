@@ -1,0 +1,6 @@
+Thu, 12 May 2016 17:44:20 -0400
+README.rdoc	Thu, 12 May 2016 13:01:54 -0400
+app/controllers/application_controller.rb	Thu, 12 May 2016 13:01:54 -0400
+app/controllers/pages_controller.rb	Thu, 12 May 2016 17:42:19 -0400
+app/helpers/application_helper.rb	Thu, 12 May 2016 13:01:54 -0400
+app/helpers/pages_helper.rb	Thu, 12 May 2016 17:03:56 -0400
