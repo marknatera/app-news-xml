@@ -11,9 +11,30 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 0) do
+ActiveRecord::Schema.define(version: 20160517203111) do
 
   # These are extensions that must be enabled in order to support this database
   enable_extension "plpgsql"
+
+  create_table "news_xmls", force: :cascade do |t|
+    t.string   "forum"
+    t.string   "forum_title"
+    t.string   "discussion_title"
+    t.string   "language"
+    t.string   "topic_url"
+    t.text     "topic_text"
+    t.string   "spam_score"
+    t.string   "post_num"
+    t.string   "post_id"
+    t.string   "post_url"
+    t.date     "post_date"
+    t.time     "post_time"
+    t.string   "username"
+    t.text     "post"
+    t.string   "country"
+    t.string   "main_image"
+    t.datetime "created_at",       null: false
+    t.datetime "updated_at",       null: false
+  end
 
 end
