@@ -70,6 +70,21 @@ namespace :download do
         xml_files.each do |file|
           xml_doc = File.open(file) { |f| Nokogiri::XML(f) }
           debugger
+
+# news_xmls = news_xml.create([
+#   {
+#     name: 'Utah Intervention Medicine (Ogden)',
+#     abbreviation: 'Ogden',
+#     address: '413 Washington Blvd',
+#     city: 'Ogden',
+#     state: 'UT',
+#     zipcode: '84404',
+#     phone: '(801) 615-2884',
+#     fax: '',
+#     active: true,
+#     account_id: 2
+#   }
+# ])
         end
 
       end
