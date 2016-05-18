@@ -69,22 +69,46 @@ namespace :download do
 
         xml_files.each do |file|
           xml_doc = File.open(file) { |f| Nokogiri::XML(f) }
+          forum = xml_doc.elements.xpath("forum").text
+          forum_title = xml_doc.elements.xpath("forum_title").text
+          discussion_title = xml_doc.elements.xpath("discussion_title").text
+          language = xml_doc.elements.xpath("language").text
+          topic_url = xml_doc.elements.xpath("topic_url").text
+          topic_text = xml_doc.elements.xpath("topic_text").text
+          spam_score = xml_doc.elements.xpath("spam_score").text
+          post_num = xml_doc.elements.xpath("post_num").text
+          post_id = xml_doc.elements.xpath("post_id").text
+          post_url = xml_doc.elements.xpath("post_url").text
+          post_date = xml_doc.elements.xpath("post_date").text
+          post_time = xml_doc.elements.xpath("post_time").text
+          username = xml_doc.elements.xpath("username").text
+          post = xml_doc.elements.xpath("post").text
+          country = xml_doc.elements.xpath("country").text
+          main_image = xml_doc.elements.xpath("main_image").text
+          identifier = ("#{forum}" + "#{forum_title}" + "#{discussion_title}" + "#{post_id}").gsub(' ', '_').downcase
+
+          news = NewsXml.find_or_initialize_by(identifier: identifier)
+          news[:forum]                = forum            || ''
+          news[:forum_title]          = forum_title      || ''
+          news[:discussion_title]     = discussion_title || ''
+          news[:language]             = language         || ''
+          news[:topic_url]            = topic_url        || ''
+          news[:topic_text]           = topic_text       || ''
+          news[:spam_score]           = spam_score       || ''
+          news[:post_num]             = post_num         || ''
+          news[:post_id]              = post_id          || ''
+          news[:post_url]             = post_url         || ''
+          news[:post_date]            = post_date        || ''
+          news[:post_time]            = post_time        || ''
+          news[:username]             = username         || ''
+          news[:post]                 = post             || ''
+          news[:country]              = country          || ''
+          news[:main_image]           = main_image       || ''
+          news[:identifier]           = identifier
+          news.save
+
           debugger
 
-# news_xmls = news_xml.create([
-#   {
-#     name: 'Utah Intervention Medicine (Ogden)',
-#     abbreviation: 'Ogden',
-#     address: '413 Washington Blvd',
-#     city: 'Ogden',
-#     state: 'UT',
-#     zipcode: '84404',
-#     phone: '(801) 615-2884',
-#     fax: '',
-#     active: true,
-#     account_id: 2
-#   }
-# ])
         end
 
       end
