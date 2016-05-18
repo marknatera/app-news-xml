@@ -75,8 +75,6 @@ task :download_news_xmls => :environment do
         news[:main_image]           = main_image       || ''
         news[:identifier]           = identifier
         news.save
-
-        debugger
       end
     end
   end

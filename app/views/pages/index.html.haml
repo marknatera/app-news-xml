@@ -5,5 +5,7 @@
 .container
   .row
     = link_to "Get My News", get_news_xmls_path, :method => 'put'
+    %br
     - @news.each do |news|
-      = news.forum
+      = news.forum_title
+      %br
