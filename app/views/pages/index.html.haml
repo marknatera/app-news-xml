@@ -1,11 +1,10 @@
 .container
   .row
-    - flash.each do |name, msg|
-      = content_tag :div, msg, :id => "flash_#{name}"
+    %h1.bg-success
+      Hey.... Do It!
+    %p.bg-success
+      - flash.each do |name, msg|
+        = content_tag :div, msg, :id => "flash_#{name}"
 .container
   .row
-    = link_to "Get My News", get_news_xmls_path, :method => 'put'
-    %br
-    - @news.each do |news|
-      = news.forum_title
-      %br
+    = link_to "Get My News", get_news_xmls_path, class: 'btn btn-success btn-lg', :method => 'put', data: {confirm: 'Are you sure?'}

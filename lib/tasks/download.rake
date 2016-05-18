@@ -16,21 +16,30 @@ task :download_news_xmls => :environment do
     zip_file_names << th.value
   end
 
-  # This part belongs on a Redis
   zip_file_names.each do |zip_name|
+
     zip_url = final_uri.to_s + zip_name
     zip_folder = zip_name.gsub(/.zip/, '')
+
     # download the zip
     File.open("public/zips/#{zip_name}", "wb") do |saved_file|
-      open("#{zip_url}", "rb") do |read_file|
-        saved_file.write(read_file.read)
-        puts "Saved #{zip_url}"
-        Zip::File.open("public/zips/#{zip_name}") do |zip_file|
-          zip_file.each do |f|
-            f_path = File.join("public/zips/#{zip_folder}", f.name)
-            FileUtils.mkdir_p(File.dirname(f_path))
-            zip_file.extract(f, f_path) unless File.exist?(f_path)
+      begin
+        open("#{zip_url}", "rb") do |read_file|
+          saved_file.write(read_file.read)
+          puts "Saved #{zip_url}"
+          Zip::File.open("public/zips/#{zip_name}") do |zip_file|
+            zip_file.each do |f|
+              f_path = File.join("public/zips/#{zip_folder}", f.name)
+              FileUtils.mkdir_p(File.dirname(f_path))
+              zip_file.extract(f, f_path) unless File.exist?(f_path)
+            end
           end
+        end
+      rescue OpenURI::HTTPError => e
+        if e.message == '404 Not Found'
+          # handle 404 error
+        else
+          raise e
         end
       end
 

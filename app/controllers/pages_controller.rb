@@ -1,7 +1,12 @@
 class PagesController < ApplicationController
 
   def index
-    @news = NewsXml.all
+    # @articles = []
+    # @redis_xmls = $redis.keys('*')
+    # @redis_xmls.each do |key|
+    #   @articles << JSON.parse($redis.get(key))
+    # end
+    # @articles
   end
 
   def get_news
@@ -9,5 +14,4 @@ class PagesController < ApplicationController
     flash[:notice] = "Getting NewsXMLs"
     redirect_to root_path
   end
-  # data = JSON.parse($redis.get("data"))
 end
