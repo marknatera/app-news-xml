@@ -1,2 +1,9 @@
-.row
-  = link_to "#", root_path, class: 'btn btn-default'
+.container
+  .row
+    - flash.each do |name, msg|
+      = content_tag :div, msg, :id => "flash_#{name}"
+.container
+  .row
+    = link_to "Get My News", get_news_xmls_path, :method => 'put'
+    - @news.each do |news|
+      = news.forum

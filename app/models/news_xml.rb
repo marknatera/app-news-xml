@@ -4,7 +4,6 @@ class NewsXml < ActiveRecord::Base
 
   def load_in_redis
     $redis.set 'data', self.to_json
-    # data = JSON.parse($redis.get("data"))
   end
 
 end
